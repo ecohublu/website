@@ -12,7 +12,7 @@ export default function Home() {
           background: 'linear-gradient(90deg, #2e7d32 0%, #1976d2 100%)',
           color: '#fff',
         }}>
-         <img src="/website/img/docusaurus.png" alt="Logo" style={{width: '120px', marginBottom: '2rem'}} />
+         <img src="/img/docusaurus.png" alt="Logo" style={{width: '120px', marginBottom: '2rem'}} />
           <h1 style={{fontSize: '3.2rem', fontWeight: 700, marginBottom: '1.5rem'}}>探索自然聲音與環境資料</h1>
           <p style={{fontSize: '1.5rem', maxWidth: '600px', margin: '0 auto'}}>
             以科技串連生態、環境與社群，協助資料收集與分析
@@ -37,7 +37,7 @@ export default function Home() {
             margin: '0 auto',
           }}>
             <div style={{flex: '0 0 320px', textAlign: 'center'}}>
-              <img src="/website/img/undraw_docusaurus_tree.svg" alt="自然環境" style={{width: '220px'}} />
+              <img src="/img/undraw_docusaurus_tree.svg" alt="自然環境" style={{width: '220px'}} />
             </div>
             <div style={{flex: '1', paddingLeft: '3rem'}}>
               <h2 style={{color: '#2e7d32', fontWeight: 700}}>關於我們</h2>
@@ -56,22 +56,22 @@ export default function Home() {
           <div style={{display: 'flex', justifyContent: 'center', gap: '2rem', marginTop: '2rem', flexWrap: 'wrap'}}>
             {[
               {
-                icon: '/website/img/undraw_docusaurus_mountain.svg',
+                icon: '/img/undraw_docusaurus_mountain.svg',
                 title: '聲音資料收集',
                 desc: '自動化收集環境聲音，支援多種感測器與格式。',
               },
               {
-                icon: '/website/img/undraw_docusaurus_tree.svg',
+                icon: '/img/undraw_docusaurus_tree.svg',
                 title: '生態影像分析',
                 desc: '結合 AI 進行影像辨識，協助物種監測與研究。',
               },
               {
-                icon: '/website/img/undraw_docusaurus_react.svg',
+                icon: '/img/undraw_docusaurus_react.svg',
                 title: '資料視覺化',
                 desc: '互動式圖表與地圖，讓資料一目了然。',
               },
               {
-                icon: '/website/img/logo.svg',
+                icon: '/img/logo.svg',
                 title: '社群協作',
                 desc: '開放平台，促進社群交流與知識分享。',
               },
@@ -98,9 +98,9 @@ export default function Home() {
           <h2 style={{textAlign: 'center', color: '#1976d2', fontWeight: 700, marginBottom: '2rem'}}>合作夥伴</h2>
           <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '2rem'}}>
               {[
-                {src: '/website/img/pust.jpg', alt: 'Pingtung University of Science and Technology', name: 'Pingtung University of Science and Technology'},
-                {src: '/website/img/endemic.gif', alt: 'Endemic Species Research Center', name: 'Endemic Species Research Center'},
-                {src: '/website/img/nsysu.jpg', alt: 'National Sun Yat-sen University', name: 'NSYSU'},
+                {src: '/img/pust.jpg', alt: 'Pingtung University of Science and Technology', name: 'Pingtung University of Science and Technology'},
+                {src: '/img/endemic.gif', alt: 'Endemic Species Research Center', name: 'Endemic Species Research Center'},
+                {src: '/img/nsysu.jpg', alt: 'National Sun Yat-sen University', name: 'NSYSU'},
               ].map((partner, i) => (
                 <div
                   key={i}
