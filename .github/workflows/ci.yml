@@ -67,8 +67,8 @@ jobs:
   deploy:
     runs-on:
       - self-hosted
-      - linux
-      - x64
+      - Linux
+      - X64
     needs: docker-build
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
