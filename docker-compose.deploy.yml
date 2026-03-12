@@ -1,0 +1,7 @@
+services:
+  website:
+    image: ghcr.io/ecohublu/website:latest
+    container_name: website-docs
+    ports:
+      - "8080:80"
+    restart: unless-stopped
