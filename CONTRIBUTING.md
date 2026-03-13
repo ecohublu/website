@@ -92,6 +92,7 @@ This repository uses [cicd.yml](./.github/workflows/cicd.yml).
 - Use issues for bugs, feature requests, refactors, and technical debt.
 - Assign the issue to the person responsible for implementation.
 - Link pull requests to issues whenever possible.
+- Create issue branches from `dev` for normal development work.
 
 Recommended labels:
 
@@ -115,6 +116,24 @@ To auto-close an issue after merge, include one of these in the pull request des
 - `Closes #<issue-number>`
 - `Fixes #<issue-number>`
 - `Resolves #<issue-number>`
+
+## Minimal Team Workflow
+
+Use this workflow unless the project becomes large enough to need more process.
+
+- Use one issue for one task.
+- Create one branch per issue from `dev`.
+- Open one pull request per branch into `dev`.
+- Merge `dev` into `main` only when ready to release.
+- Let `main` trigger deployment.
+
+In short:
+
+- Issue tracks the work.
+- Branch contains the implementation.
+- Pull request handles review and merge.
+- `dev` is the integration branch.
+- `main` is the release branch.
 
 ## Deployment Notes
 
