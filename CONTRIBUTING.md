@@ -86,6 +86,36 @@ This repository uses [cicd.yml](./.github/workflows/cicd.yml).
 - Do not push directly to `main`.
 - Prefer merging into `dev` first unless handling a production hotfix.
 
+## Issue Workflow
+
+- Open an issue before starting medium or large changes.
+- Use issues for bugs, feature requests, refactors, and technical debt.
+- Assign the issue to the person responsible for implementation.
+- Link pull requests to issues whenever possible.
+
+Recommended labels:
+
+- `frontend`
+- `backend`
+- `bug`
+- `enhancement`
+- `documentation`
+
+Recommended flow:
+
+1. Create an issue.
+2. Create a branch from `dev`.
+3. Implement the change.
+4. Open a pull request into `dev`.
+5. Reference the issue in the pull request description.
+6. Merge after review and CI pass.
+
+To auto-close an issue after merge, include one of these in the pull request description:
+
+- `Closes #<issue-number>`
+- `Fixes #<issue-number>`
+- `Resolves #<issue-number>`
+
 ## Deployment Notes
 
 - Docker image registry: `ghcr.io/ecohublu/website`
