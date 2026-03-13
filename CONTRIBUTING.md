@@ -105,11 +105,35 @@ Recommended labels:
 Recommended flow:
 
 1. Create an issue.
-2. Create a branch from `dev`.
-3. Implement the change.
-4. Open a pull request into `dev`.
-5. Reference the issue in the pull request description.
-6. Merge after review and CI pass.
+2. The assignee updates local `dev`.
+3. Create a local branch from `dev`.
+4. Implement the change.
+5. Push the branch to GitHub.
+6. Open a pull request into `dev`.
+7. Reference the issue in the pull request description.
+8. Merge after review and CI pass.
+
+Typical responsibility split:
+
+- SA creates and describes the issue.
+- PG pulls the latest `dev` branch and creates a local working branch.
+- PG pushes that branch only when implementation is ready to share.
+- The pull request is the main GitHub link between code changes and the issue.
+
+Example:
+
+```bash
+git checkout dev
+git pull ecohublu dev
+git checkout -b fix/frontend-23-image-path
+git add .
+git commit -m "Fix frontend image path"
+git push -u ecohublu fix/frontend-23-image-path
+```
+
+Then open a pull request:
+
+- `fix/frontend-23-image-path -> dev`
 
 To auto-close an issue after merge, include one of these in the pull request description:
 
@@ -140,6 +164,3 @@ In short:
 - Docker image registry: `ghcr.io/ecohublu/website`
 - Deployment uses `docker-compose.deploy.yml`
 - Production deployment is triggered only after changes are merged into `main`
-
-
-- Issue branches should be created from `dev` for normal development work.
