@@ -140,3 +140,6 @@ In short:
 - Docker image registry: `ghcr.io/ecohublu/website`
 - Deployment uses `docker-compose.deploy.yml`
 - Production deployment is triggered only after changes are merged into `main`
+
+
+- Issue branches should be created from `dev` for normal development work.
