@@ -1,160 +1,365 @@
 import React from 'react';
+import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
+import {ArrowRight} from 'lucide-react';
+import {Button} from '@site/src/components/ui/button';
+import {
+  audiences,
+  clientBenefits,
+  contactChecklist,
+  contactEmail,
+  contactExpectations,
+  engagementModels,
+  hero,
+  overview,
+  partners,
+  principles,
+  services,
+  siteDescription,
+  siteTitle,
+  stats,
+  vision,
+  work,
+} from '@site/src/data/siteContent';
+
+const contactScenarios = [
+  '想先討論目前的網站、資料流程或研究專案，確認適合從哪一段開始整理。',
+  '需要建立正式對外網站、成果站或資料入口，但還不確定資訊架構與頁面範圍。',
+  '已經有資料與內容基礎，想規劃後續的平台功能、維運方式與移交流程。',
+];
+
+function SectionLabel({children}) {
+  return (
+    <div className="onepage-marker">
+      <span>{children}</span>
+    </div>
+  );
+}
+
+function NumberedRows({items, renderTitle, renderBody}) {
+  return (
+    <div className="onepage-feature-list">
+      {items.map((item, index) => (
+        <div key={renderTitle(item)} className="onepage-feature-row">
+          <div className="onepage-feature-index">{String(index + 1).padStart(2, '0')}</div>
+          <div className="space-y-3">
+            <h3 className="onepage-feature-title">{renderTitle(item)}</h3>
+            <div className="onepage-feature-copy">{renderBody(item)}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <Layout title="首頁" description="Docusaurus 靜態首頁">
-      <main>
-        {/* 第一個 section：大橫幅＋主題標語＋圖示 */}
-        <section style={{
-          padding: '6rem 0 4rem 0',
-          textAlign: 'center',
-          background: 'linear-gradient(90deg, #2e7d32 0%, #1976d2 100%)',
-          color: '#fff',
-        }}>
-         <img src="/img/docusaurus.png" alt="Logo" style={{width: '120px', marginBottom: '2rem'}} />
-          <h1 style={{fontSize: '3.2rem', fontWeight: 700, marginBottom: '1.5rem'}}>探索自然聲音與環境資料</h1>
-          <p style={{fontSize: '1.5rem', maxWidth: '600px', margin: '0 auto'}}>
-            以科技串連生態、環境與社群，協助資料收集與分析
-          </p>
-        </section>
+    <Layout title={siteTitle} description={siteDescription}>
+      <main className="bg-background">
+        <section className="hero-section">
+          <div className="w-full">
+            <div className="hero-surface px-6 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14">
+              <span className="hero-polygon hero-polygon--one" aria-hidden="true" />
+              <span className="hero-polygon hero-polygon--two" aria-hidden="true" />
+              <span className="hero-polygon hero-polygon--three" aria-hidden="true" />
+              <span className="hero-polygon hero-polygon--four" aria-hidden="true" />
+              <span className="hero-scroll-note" aria-hidden="true">
+                Scroll
+              </span>
 
-        {/* 第二個 section：左右分欄（左圖右文） */}
-        <section style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '4rem 0',
-          background: '#f5f7fa',
-        }}>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            maxWidth: '900px',
-            margin: '0 auto',
-          }}>
-            <div style={{flex: '0 0 320px', textAlign: 'center'}}>
-              <img src="/img/undraw_docusaurus_tree.svg" alt="自然環境" style={{width: '220px'}} />
-            </div>
-            <div style={{flex: '1', paddingLeft: '3rem'}}>
-              <h2 style={{color: '#2e7d32', fontWeight: 700}}>關於我們</h2>
-              <p style={{fontSize: '1.2rem', color: '#333', lineHeight: 1.7}}>
-                我們致力於推動環境資料的收集與分析，讓每個人都能參與生態保育與科學研究。
-                <br />
-                透過開放平台，分享聲音、影像與環境數據，促進社群交流與知識傳遞。
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* 第三個 section：四個自然主題卡片 */}
-        <section style={{padding: '4rem 0', background: '#e8f5e9'}}>
-          <h2 style={{textAlign: 'center', color: '#1976d2', fontWeight: 700}}>我們的服務</h2>
-          <div style={{display: 'flex', justifyContent: 'center', gap: '2rem', marginTop: '2rem', flexWrap: 'wrap'}}>
-            {[
-              {
-                icon: '/img/undraw_docusaurus_mountain.svg',
-                title: '聲音資料收集',
-                desc: '自動化收集環境聲音，支援多種感測器與格式。',
-              },
-              {
-                icon: '/img/undraw_docusaurus_tree.svg',
-                title: '生態影像分析',
-                desc: '結合 AI 進行影像辨識，協助物種監測與研究。',
-              },
-              {
-                icon: '/img/undraw_docusaurus_react.svg',
-                title: '資料視覺化',
-                desc: '互動式圖表與地圖，讓資料一目了然。',
-              },
-              {
-                icon: '/img/logo.svg',
-                title: '社群協作',
-                desc: '開放平台，促進社群交流與知識分享。',
-              },
-            ].map((card, i) => (
-              <div key={i} style={{
-                background: '#fff',
-                border: '1px solid #c8e6c9',
-                borderRadius: '12px',
-                padding: '2rem',
-                width: '240px',
-                boxShadow: ' 0 2px 12px rgba(44, 62, 80, 0.08)',
-                textAlign: 'center',
-              }}>
-                <img src={card.icon} alt={card.title} style={{width: '64px', marginBottom: '1rem'}} />
-                <h4 style={{color: '#2e7d32', fontWeight: 700}}>{card.title}</h4>
-                <p style={{color: '#333', fontSize: '1rem'}}>{card.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-          {/* 合作夥伴區塊 */}
-        <section style={{padding: '4rem 0', background: '#fff'}}>
-          <h2 style={{textAlign: 'center', color: '#1976d2', fontWeight: 700, marginBottom: '2rem'}}>合作夥伴</h2>
-          <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '2rem'}}>
-              {[
-                {src: '/img/pust.jpg', alt: 'Pingtung University of Science and Technology', name: 'Pingtung University of Science and Technology'},
-                {src: '/img/endemic.gif', alt: 'Endemic Species Research Center', name: 'Endemic Species Research Center'},
-                {src: '/img/nsysu.jpg', alt: 'National Sun Yat-sen University', name: 'NSYSU'},
-              ].map((partner, i) => (
-                <div
-                  key={i}
-                  style={{
-                    background: '#f7f7f7',
-                    borderRadius: '16px',
-                    boxShadow: '0 2px 12px rgba(44,62,80,0.08)',
-                    padding: '2rem',
-                    width: '220px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    marginBottom: '1rem',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    cursor: 'pointer',
-                  }}
-                  className="partner-card"
-                >
-                  <div style={{position: 'relative', width: '120px', height: '120px', marginBottom: '1rem'}}>
-                    <img
-                      src={partner.src}
-                      alt={partner.alt}
-                      style={{width: '120px', height: '120px', objectFit: 'contain', filter: 'grayscale(1)', transition: 'filter 0.3s'}}
-                      className="partner-img"
-                    />
-                    <style>{`
-                      .partner-card:hover .partner-img {
-                        filter: none !important;
-                      }
-                    `}</style>
+              <div className="relative z-10 mx-auto flex min-h-[calc(100vh-8rem)] max-w-7xl items-center">
+                <div className="max-w-5xl space-y-8">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="hero-pill">{hero.badge}</span>
+                    <p className="text-xs font-semibold uppercase tracking-[0.26em] text-black/60">
+                      Data platforms, project websites, open access
+                    </p>
                   </div>
-                  <div style={{fontWeight: 600, color: '#333'}}>{partner.name}</div>
+
+                  <div className="space-y-5">
+                    <h1 className="max-w-5xl whitespace-pre-line text-balance text-5xl font-black leading-[0.9] tracking-[-0.05em] text-black sm:text-6xl md:text-7xl xl:text-[5.35rem]">
+                      {hero.title}
+                    </h1>
+                    <p className="max-w-xl text-sm leading-6 text-black/70 md:text-base">
+                      {hero.description}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-3">
+                    <Button asChild size="lg" className="hero-entry-button gap-2">
+                      <Link to="/#contact-us">
+                        {hero.primaryCta}
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </Button>
+                    <Button
+                      asChild
+                      size="lg"
+                      variant="outline"
+                      className="hero-secondary-button">
+                      <Link to="/#products-services">{hero.secondaryCta}</Link>
+                    </Button>
+                  </div>
                 </div>
-              ))}
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* 第四個 section：總結/行動呼籲 */}
-        <section style={{padding: '3rem 0', textAlign: 'center', background: '#263238', color: '#fff'}}>
-          <h2 style={{fontWeight: 700, fontSize: '2rem', marginBottom: '1rem'}}>加入我們，一起守護環境！</h2>
-          <p style={{fontSize: '1.2rem', marginBottom: '2rem'}}>立即註冊帳號，或聯絡我們了解更多合作方案。</p>
-          <a href="mailto:info@example.com" style={{
-            display: 'inline-block',
-            background: '#1976d2',
-            color: '#fff',
-            padding: '0.8rem 2rem',
-            borderRadius: '6px',
-            fontWeight: 700,
-            textDecoration: 'none',
-            fontSize: '1.1rem',
-          }}>聯絡我們</a>
+        <section id="company-intro" className="onepage-section onepage-section--muted">
+          <div className="container">
+            <div className="onepage-shell">
+              <SectionLabel>公司介紹</SectionLabel>
+
+              <div className="onepage-content">
+                <div className="space-y-6">
+                  <span className="onepage-eyebrow">About Data Island</span>
+                  <h2 className="onepage-title">{overview.title}</h2>
+                  <p className="onepage-lead">{siteDescription}</p>
+                  <p className="onepage-body">{vision.description}</p>
+                </div>
+
+                <div className="onepage-stat-list">
+                  {stats.map((item) => (
+                    <div key={item.label} className="onepage-stat">
+                      <p className="onepage-stat-label">{item.label}</p>
+                      <p className="onepage-stat-value">{item.value}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="onepage-note-grid">
+                  <div className="onepage-note-block">
+                    <p className="onepage-subhead">我們在做什麼</p>
+                    <h3 className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+                      {vision.title}
+                    </h3>
+                    <div className="mt-4 space-y-3 text-base leading-8 text-muted-foreground">
+                      <p>{overview.description}</p>
+                      {overview.highlights.map((item) => (
+                        <p key={item}>{item}</p>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="onepage-note-block">
+                    <p className="onepage-subhead">合作對象</p>
+                    <div className="space-y-4">
+                      {audiences.map((audience) => (
+                        <div key={audience.title} className="border-t border-border/70 pt-4 first:border-t-0 first:pt-0">
+                          <h3 className="text-xl font-semibold text-foreground">{audience.title}</h3>
+                          <p className="mt-2 text-base leading-8 text-muted-foreground">
+                            {audience.description}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="onepage-subhead">我們重視的原則</p>
+                  <NumberedRows
+                    items={principles}
+                    renderTitle={(item) => item.title}
+                    renderBody={(item) => item.description}
+                  />
+                </div>
+
+                <div className="onepage-partner-strip">
+                  <p className="onepage-subhead">合作單位</p>
+                  <div className="onepage-logo-strip">
+                    {partners.map((partner) => (
+                      <div key={partner.name} className="onepage-logo-item">
+                        <img
+                          src={partner.image}
+                          alt={partner.name}
+                          className="h-14 w-auto object-contain grayscale"
+                        />
+                        <span>{partner.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
+        <section id="products-services" className="onepage-section">
+          <div className="container">
+            <div className="onepage-shell">
+              <SectionLabel>產品與服務</SectionLabel>
+
+              <div className="onepage-content">
+                <div className="space-y-6">
+                  <span className="onepage-eyebrow">Products & Services</span>
+                  <h2 className="onepage-title">
+                    從資料平台、成果網站到開放資料入口，內容按照需求一段一段往下展開。
+                  </h2>
+                  <p className="onepage-lead">
+                    我們不是把服務切成很多張卡片，而是依照實際工作流程去規劃資料、內容、角色權限與對外溝通方式。
+                  </p>
+                </div>
+
+                <div>
+                  <p className="onepage-subhead">核心服務</p>
+                  <NumberedRows
+                    items={services}
+                    renderTitle={(item) => item.title}
+                    renderBody={(item) => item.description}
+                  />
+                </div>
+
+                <div>
+                  <p className="onepage-subhead">可交付的產品類型</p>
+                  <NumberedRows
+                    items={work}
+                    renderTitle={(item) => item.title}
+                    renderBody={(item) => (
+                      <div className="space-y-4">
+                        <p>{item.summary}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {item.tags.map((tag) => (
+                            <span key={tag} className="onepage-chip">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="space-y-2 border-t border-border/70 pt-4">
+                          {item.deliverables.map((deliverable) => (
+                            <p key={deliverable} className="text-sm leading-7 text-muted-foreground">
+                              {deliverable}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  />
+                </div>
+
+                <div className="onepage-note-grid">
+                  {engagementModels.map((model) => (
+                    <div key={model.title} className="onepage-note-block">
+                      <p className="onepage-subhead">合作方式</p>
+                      <h3 className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+                        {model.title}
+                      </h3>
+                      <p className="mt-4 text-base leading-8 text-muted-foreground">
+                        {model.description}
+                      </p>
+                      <div className="mt-5 space-y-3 border-t border-border/70 pt-5">
+                        {model.points.map((point) => (
+                          <p key={point} className="text-sm leading-7 text-muted-foreground">
+                            {point}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div>
+                  <p className="onepage-subhead">合作後你會得到什麼</p>
+                  <div className="onepage-feature-list">
+                    {clientBenefits.map((item, index) => (
+                      <div key={item} className="onepage-feature-row">
+                        <div className="onepage-feature-index">
+                          {String(index + 1).padStart(2, '0')}
+                        </div>
+                        <p className="onepage-feature-copy">{item}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact-us" className="onepage-section onepage-section--accent">
+          <div className="container">
+            <div className="onepage-shell">
+              <SectionLabel>聯絡我們</SectionLabel>
+
+              <div className="onepage-content">
+                <div className="space-y-6">
+                  <span className="onepage-eyebrow">Contact</span>
+                  <h2 className="onepage-title">
+                    如果你已經有資料、研究成果或專案需求，現在就可以開始第一輪整理。
+                  </h2>
+                  <p className="onepage-lead">
+                    先把你們目前的資料狀態、網站現況與合作目標說清楚，我們就能一起判斷適合從官網、資料入口，或平台規劃開始。
+                  </p>
+                </div>
+
+                <div className="onepage-contact-grid">
+                  <div className="onepage-note-block">
+                    <p className="onepage-subhead">聯絡方式</p>
+                    <a className="onepage-email-link" href={`mailto:${contactEmail}`}>
+                      {contactEmail}
+                    </a>
+                    <p className="mt-4 text-base leading-8 text-muted-foreground">
+                      你可以直接來信描述背景、目標、預計時程與既有資產，我們會先協助收斂出可以開始執行的範圍。
+                    </p>
+                    <div className="mt-6">
+                      <Button asChild size="lg" className="hero-entry-button gap-2">
+                        <a href={`mailto:${contactEmail}`}>
+                          立即來信
+                          <ArrowRight className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+
+                  <div className="onepage-note-block">
+                    <p className="onepage-subhead">來信時可以先提供</p>
+                    <div className="space-y-4">
+                      {contactChecklist.map((item, index) => (
+                        <div key={item} className="border-t border-border/70 pt-4 first:border-t-0 first:pt-0">
+                          <div className="onepage-feature-index">
+                            {String(index + 1).padStart(2, '0')}
+                          </div>
+                          <p className="mt-2 text-base leading-8 text-foreground">{item}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="onepage-note-grid">
+                  <div className="onepage-note-block">
+                    <p className="onepage-subhead">合作預期</p>
+                    <div className="space-y-4">
+                      {contactExpectations.map((item, index) => (
+                        <div key={item} className="border-t border-border/70 pt-4 first:border-t-0 first:pt-0">
+                          <div className="onepage-feature-index">
+                            {String(index + 1).padStart(2, '0')}
+                          </div>
+                          <p className="mt-2 text-base leading-8 text-muted-foreground">{item}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="onepage-note-block">
+                    <p className="onepage-subhead">適合先聊聊的情況</p>
+                    <div className="space-y-4">
+                      {contactScenarios.map((item, index) => (
+                        <div key={item} className="border-t border-border/70 pt-4 first:border-t-0 first:pt-0">
+                          <div className="onepage-feature-index">
+                            {String(index + 1).padStart(2, '0')}
+                          </div>
+                          <p className="mt-2 text-base leading-8 text-muted-foreground">{item}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
     </Layout>
   );
