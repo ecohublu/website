@@ -7,7 +7,7 @@ import {brandName, contactEmail, footerDescription, siteDescription} from './src
 const config = {
   title: brandName,
   tagline: '生態監測資料平台與專案網站',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/dataisland-logo.png',
   url: 'https://www.dataisland.tw',
   baseUrl: '/',
   future: {
@@ -37,7 +37,7 @@ const config = {
   ],
   themeConfig:
     ({
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/dataisland-social-card.png',
       colorMode: {
         defaultMode: 'light',
         disableSwitch: true,
@@ -47,7 +47,7 @@ const config = {
         title: brandName,
         logo: {
           alt: brandName,
-          src: 'img/docusaurus.png',
+          src: 'img/dataisland-logo.png',
         },
         items: [
           {href: '/#company-intro', label: '公司介紹', position: 'left'},

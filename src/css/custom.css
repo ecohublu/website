@@ -1410,8 +1410,8 @@
   }
 
   .navbar__logo {
-    height: 2rem;
-    width: 2rem;
+    height: 3rem;
+    width: 3rem;
     object-fit: contain;
     flex: 0 0 auto;
   }
@@ -1733,8 +1733,8 @@
   }
 
   .navbar__logo {
-    height: 1.6rem;
-    width: 1.6rem;
+    height: 2.4rem;
+    width: 2.4rem;
   }
 
   .hero-surface {

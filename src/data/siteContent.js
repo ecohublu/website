@@ -1,4 +1,4 @@
-export const brandName = '數嶼科技';
+﻿export const brandName = '數嶼科技';
 
 export const siteTitle = `${brandName} | 生態監測資料平台與專案網站`;
 
@@ -19,7 +19,6 @@ export const hero = {
   primaryCta: '預約需求討論',
   secondaryCta: '查看核心產品',
 };
-
 export const partnerSection = {
   title: '曾合作的研究、保育與公共計畫夥伴',
   description:
@@ -437,3 +436,4 @@ export const contactExpectations = [
   '如果需要平台功能，後續可以再拆成產品需求與開發排程。',
   '合作完成後，網站或系統基礎應該是可持續維護與移交的。',
 ];
+

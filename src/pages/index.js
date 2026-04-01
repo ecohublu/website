@@ -20,7 +20,6 @@ import {
   products,
   productsIntro,
   siteDescription,
-  siteTitle,
 } from '@site/src/data/siteContent';
 
 function SectionIntro({
@@ -48,11 +47,11 @@ function SectionIntro({
 }
 
 export default function Home() {
-  const mobileHeroTitleLines = ['把生態監測資料，', '變成可管理、', '可應用的工作系統。'];
+  const mobileHeroTitleLines = hero.titleLines || [hero.title];
   const desktopHeroTitleLines = hero.titleLines || [hero.title];
 
   return (
-    <Layout title={siteTitle} description={siteDescription}>
+    <Layout title="數嶼科技 | 生態監測資料工作流程" description={siteDescription}>
       <main className="bg-background">
         <section className="hero-section">
           <div className="w-full">
