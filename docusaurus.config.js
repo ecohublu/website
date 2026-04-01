@@ -8,7 +8,7 @@ const config = {
   title: brandName,
   tagline: '生態監測資料平台與專案網站',
   favicon: 'img/favicon.ico',
-  url: 'https://dataislans.tw',
+  url: 'https://www.dataisland.tw',
   baseUrl: '/',
   future: {
     v4: true,
