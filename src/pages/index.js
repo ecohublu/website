@@ -1,160 +1,277 @@
 import React from 'react';
+import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
+import {ArrowRight} from 'lucide-react';
+import {Button} from '@site/src/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@site/src/components/ui/card';
+import {
+  capabilitySummary,
+  contactEmail,
+  contactSection,
+  hero,
+  partners,
+  partnerSection,
+  products,
+  productsIntro,
+  siteDescription,
+  siteTitle,
+} from '@site/src/data/siteContent';
+
+function SectionIntro({
+  eyebrow,
+  title,
+  titleLines,
+  description,
+  headClassName = '',
+  titleClassName = '',
+  descriptionClassName = '',
+}) {
+  return (
+    <div className={`brand-section-head ${headClassName}`.trim()}>
+      <span className="brand-eyebrow">{eyebrow}</span>
+      <h2 className={`brand-title ${titleClassName}`.trim()}>
+        {(titleLines || [title]).map((line) => (
+          <span key={line} className="section-title-line">
+            {line}
+          </span>
+        ))}
+      </h2>
+      {description ? <p className={`brand-copy ${descriptionClassName}`.trim()}>{description}</p> : null}
+    </div>
+  );
+}
 
 export default function Home() {
+  const mobileHeroTitleLines = ['把生態監測資料，', '變成可管理、', '可應用的工作系統。'];
+  const desktopHeroTitleLines = hero.titleLines || [hero.title];
+
   return (
-    <Layout title="首頁" description="Docusaurus 靜態首頁">
-      <main>
-        {/* 第一個 section：大橫幅＋主題標語＋圖示 */}
-        <section style={{
-          padding: '6rem 0 4rem 0',
-          textAlign: 'center',
-          background: 'linear-gradient(90deg, #2e7d32 0%, #1976d2 100%)',
-          color: '#fff',
-        }}>
-         <img src="/img/docusaurus.png" alt="Logo" style={{width: '120px', marginBottom: '2rem'}} />
-          <h1 style={{fontSize: '3.2rem', fontWeight: 700, marginBottom: '1.5rem'}}>探索自然聲音與環境資料</h1>
-          <p style={{fontSize: '1.5rem', maxWidth: '600px', margin: '0 auto'}}>
-            以科技串連生態、環境與社群，協助資料收集與分析
-          </p>
-        </section>
+    <Layout title={siteTitle} description={siteDescription}>
+      <main className="bg-background">
+        <section className="hero-section">
+          <div className="w-full">
+            <div className="hero-surface px-6 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14">
+              <span className="hero-polygon hero-polygon--one" aria-hidden="true" />
+              <span className="hero-polygon hero-polygon--two" aria-hidden="true" />
+              <span className="hero-polygon hero-polygon--three" aria-hidden="true" />
+              <span className="hero-polygon hero-polygon--four" aria-hidden="true" />
+              <span className="hero-scroll-note" aria-hidden="true">
+                Scroll
+              </span>
 
-        {/* 第二個 section：左右分欄（左圖右文） */}
-        <section style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '4rem 0',
-          background: '#f5f7fa',
-        }}>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            maxWidth: '900px',
-            margin: '0 auto',
-          }}>
-            <div style={{flex: '0 0 320px', textAlign: 'center'}}>
-              <img src="/img/undraw_docusaurus_tree.svg" alt="自然環境" style={{width: '220px'}} />
-            </div>
-            <div style={{flex: '1', paddingLeft: '3rem'}}>
-              <h2 style={{color: '#2e7d32', fontWeight: 700}}>關於我們</h2>
-              <p style={{fontSize: '1.2rem', color: '#333', lineHeight: 1.7}}>
-                我們致力於推動環境資料的收集與分析，讓每個人都能參與生態保育與科學研究。
-                <br />
-                透過開放平台，分享聲音、影像與環境數據，促進社群交流與知識傳遞。
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* 第三個 section：四個自然主題卡片 */}
-        <section style={{padding: '4rem 0', background: '#e8f5e9'}}>
-          <h2 style={{textAlign: 'center', color: '#1976d2', fontWeight: 700}}>我們的服務</h2>
-          <div style={{display: 'flex', justifyContent: 'center', gap: '2rem', marginTop: '2rem', flexWrap: 'wrap'}}>
-            {[
-              {
-                icon: '/img/undraw_docusaurus_mountain.svg',
-                title: '聲音資料收集',
-                desc: '自動化收集環境聲音，支援多種感測器與格式。',
-              },
-              {
-                icon: '/img/undraw_docusaurus_tree.svg',
-                title: '生態影像分析',
-                desc: '結合 AI 進行影像辨識，協助物種監測與研究。',
-              },
-              {
-                icon: '/img/undraw_docusaurus_react.svg',
-                title: '資料視覺化',
-                desc: '互動式圖表與地圖，讓資料一目了然。',
-              },
-              {
-                icon: '/img/logo.svg',
-                title: '社群協作',
-                desc: '開放平台，促進社群交流與知識分享。',
-              },
-            ].map((card, i) => (
-              <div key={i} style={{
-                background: '#fff',
-                border: '1px solid #c8e6c9',
-                borderRadius: '12px',
-                padding: '2rem',
-                width: '240px',
-                boxShadow: ' 0 2px 12px rgba(44, 62, 80, 0.08)',
-                textAlign: 'center',
-              }}>
-                <img src={card.icon} alt={card.title} style={{width: '64px', marginBottom: '1rem'}} />
-                <h4 style={{color: '#2e7d32', fontWeight: 700}}>{card.title}</h4>
-                <p style={{color: '#333', fontSize: '1rem'}}>{card.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-          {/* 合作夥伴區塊 */}
-        <section style={{padding: '4rem 0', background: '#fff'}}>
-          <h2 style={{textAlign: 'center', color: '#1976d2', fontWeight: 700, marginBottom: '2rem'}}>合作夥伴</h2>
-          <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '2rem'}}>
-              {[
-                {src: '/img/pust.jpg', alt: 'Pingtung University of Science and Technology', name: 'Pingtung University of Science and Technology'},
-                {src: '/img/endemic.gif', alt: 'Endemic Species Research Center', name: 'Endemic Species Research Center'},
-                {src: '/img/nsysu.jpg', alt: 'National Sun Yat-sen University', name: 'NSYSU'},
-              ].map((partner, i) => (
-                <div
-                  key={i}
-                  style={{
-                    background: '#f7f7f7',
-                    borderRadius: '16px',
-                    boxShadow: '0 2px 12px rgba(44,62,80,0.08)',
-                    padding: '2rem',
-                    width: '220px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    marginBottom: '1rem',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    cursor: 'pointer',
-                  }}
-                  className="partner-card"
-                >
-                  <div style={{position: 'relative', width: '120px', height: '120px', marginBottom: '1rem'}}>
-                    <img
-                      src={partner.src}
-                      alt={partner.alt}
-                      style={{width: '120px', height: '120px', objectFit: 'contain', filter: 'grayscale(1)', transition: 'filter 0.3s'}}
-                      className="partner-img"
-                    />
-                    <style>{`
-                      .partner-card:hover .partner-img {
-                        filter: none !important;
-                      }
-                    `}</style>
+              <div className="relative z-10 mx-auto flex min-h-[calc(100vh-8rem)] max-w-7xl items-center">
+                <div className="max-w-5xl space-y-8">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="hero-pill">{hero.badge}</span>
                   </div>
-                  <div style={{fontWeight: 600, color: '#333'}}>{partner.name}</div>
+
+                  <div className="space-y-5">
+                    <h1 className="max-w-6xl text-5xl font-black leading-[0.9] tracking-[-0.05em] text-black sm:text-6xl md:hidden">
+                      {mobileHeroTitleLines.map((line) => (
+                        <span key={line} className="block">
+                          {line}
+                        </span>
+                      ))}
+                    </h1>
+                    <h1 className="hidden max-w-6xl font-black leading-[0.9] tracking-[-0.05em] text-black md:block md:text-7xl lg:whitespace-nowrap xl:text-[5.1rem]">
+                      {desktopHeroTitleLines.map((line) => (
+                        <span key={line} className="hero-title-line">
+                          {line}
+                        </span>
+                      ))}
+                    </h1>
+                    <p className="max-w-5xl text-sm leading-8 text-black/72 md:text-base md:leading-7 lg:whitespace-nowrap lg:text-[1.05rem]">
+                      {hero.description}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-3">
+                    <Button asChild size="lg" className="hero-entry-button gap-2">
+                      <Link to="/#contact-us">
+                        {hero.primaryCta}
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </Button>
+                    <Button
+                      asChild
+                      size="lg"
+                      variant="outline"
+                      className="hero-secondary-button">
+                      <Link to="/#products-services">{hero.secondaryCta}</Link>
+                    </Button>
+                  </div>
                 </div>
-              ))}
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* 第四個 section：總結/行動呼籲 */}
-        <section style={{padding: '3rem 0', textAlign: 'center', background: '#263238', color: '#fff'}}>
-          <h2 style={{fontWeight: 700, fontSize: '2rem', marginBottom: '1rem'}}>加入我們，一起守護環境！</h2>
-          <p style={{fontSize: '1.2rem', marginBottom: '2rem'}}>立即註冊帳號，或聯絡我們了解更多合作方案。</p>
-          <a href="mailto:info@example.com" style={{
-            display: 'inline-block',
-            background: '#1976d2',
-            color: '#fff',
-            padding: '0.8rem 2rem',
-            borderRadius: '6px',
-            fontWeight: 700,
-            textDecoration: 'none',
-            fontSize: '1.1rem',
-          }}>聯絡我們</a>
+        <section className="brand-section brand-section--partners">
+          <div className="container">
+            <div className="partner-strip">
+              <div className="partner-strip__header">
+                <span className="brand-eyebrow">Partners</span>
+                <h2 className="partner-strip__title">{partnerSection.title}</h2>
+                <p className="partner-strip__copy">{partnerSection.description}</p>
+              </div>
+
+              <div className="partner-logo-grid">
+                {partners.map((partner) => (
+                  <div key={partner.name} className="partner-logo-card">
+                    <img
+                      src={partner.image}
+                      alt={partner.name}
+                      className="partner-logo-image"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </section>
 
+        <section id="company-intro" className="brand-section brand-section--muted">
+          <div className="container">
+            <div className="capability-showcase">
+              <div className="capability-showcase__hero">
+                <div className="capability-summary-block">
+                  <span className="brand-eyebrow">About</span>
+                  <h2 className="capability-summary-title">
+                    {(capabilitySummary.titleLines || [capabilitySummary.title]).map((line) => (
+                      <span key={line} className="capability-summary-title__line">
+                        {line}
+                      </span>
+                    ))}
+                  </h2>
+                  <p className="capability-summary-intro">{capabilitySummary.intro}</p>
+                  <p className="capability-summary-copy">{capabilitySummary.description}</p>
+                </div>
+              </div>
+
+              <div className="capability-feature-grid">
+                {capabilitySummary.features.map((feature, index) => (
+                  <Card key={feature.title} className="capability-feature-card">
+                    <CardContent className="p-6 md:p-7">
+                      <div className="capability-feature-card__index">
+                        {String(index + 1).padStart(2, '0')}
+                      </div>
+                      <h3 className="capability-feature-card__title">{feature.title}</h3>
+                      <p className="capability-feature-card__copy">{feature.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="products-services" className="brand-section brand-section--intro">
+          <div className="container">
+            <SectionIntro
+              eyebrow="Products Intro"
+              title={productsIntro.title}
+              headClassName="lg:max-w-none"
+              titleClassName="lg:max-w-none lg:whitespace-nowrap"
+              descriptionClassName="lg:max-w-none lg:whitespace-nowrap"
+              description={productsIntro.description}
+            />
+          </div>
+        </section>
+
+        <section className="brand-section brand-section--products">
+          <div className="container">
+            <div className="product-card-grid">
+              {products.map((product) => (
+                <Link
+                  key={product.name}
+                  to={`/products/${product.slug}`}
+                  className="product-card-link"
+                  aria-label={`查看 ${product.name} 產品說明`}>
+                  <Card className="product-card">
+                    <CardHeader className="space-y-4 p-7 md:p-8">
+                      <div className="space-y-2">
+                        <span className="product-card__kicker">{product.kicker}</span>
+                        <CardTitle className="product-card__name">{product.name}</CardTitle>
+                        <CardDescription className="product-card__type">
+                          {product.title}
+                        </CardDescription>
+                        {product.cardMeta ? (
+                          <div className="product-card__meta">
+                            {product.cardMeta.map((meta) => (
+                              <p key={meta}>{meta}</p>
+                            ))}
+                          </div>
+                        ) : null}
+                      </div>
+                      <p className="product-card__summary">{product.summary}</p>
+                    </CardHeader>
+                    <CardContent className="p-7 pt-0 md:px-8 md:pb-8">
+                      <div className="product-card__footer">
+                        <div className="product-card__cta-panel">
+                          <div className="product-card__cta">
+                            {product.ctaLabel || '查看產品說明'}
+                            <ArrowRight className="h-4 w-4" />
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="contact-us" className="brand-section">
+          <div className="container">
+            <div className="page-cta-card">
+              <div className="contact-cta-layout">
+                <div className="space-y-6">
+                  <SectionIntro
+                    eyebrow="Contact"
+                    title={contactSection.title}
+                    titleLines={contactSection.titleLines}
+                    description={contactSection.description}
+                  />
+                  <Button asChild size="lg" className="hero-entry-button w-fit gap-2">
+                    <a href={`mailto:${contactEmail}`}>
+                      預約需求討論
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </Button>
+                </div>
+
+                <div className="contact-checklist">
+                  {contactSection.checklist.map((item, index) => (
+                    <div key={item} className="contact-checklist__item">
+                      <div className="onepage-feature-index">
+                        {String(index + 1).padStart(2, '0')}
+                      </div>
+                      <div className="contact-checklist__copy">
+                        {item.split('\n').map((line, lineIndex) =>
+                          lineIndex === 0 ? (
+                            <h3 key={line} className="contact-checklist__title">
+                              {line}
+                            </h3>
+                          ) : (
+                            <p key={line}>{line}</p>
+                          ),
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
     </Layout>
   );
