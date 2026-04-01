@@ -1,7 +1,7 @@
 // @ts-check
 
 import {themes as prismThemes} from 'prism-react-renderer';
-import {brandName, contactEmail, siteDescription} from './src/data/siteContent.js';
+import {brandName, contactEmail, footerDescription, siteDescription} from './src/data/siteContent.js';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -71,7 +71,7 @@ const config = {
             items: [{label: contactEmail, href: `mailto:${contactEmail}`}],
           },
         ],
-        copyright: `© ${new Date().getFullYear()} ${brandName}. ${siteDescription}`,
+        copyright: `© ${new Date().getFullYear()} ${brandName}. ${footerDescription}`,
       },
       prism: {
         theme: prismThemes.github,

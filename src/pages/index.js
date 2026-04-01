@@ -4,55 +4,53 @@ import Layout from '@theme/Layout';
 import {ArrowRight} from 'lucide-react';
 import {Button} from '@site/src/components/ui/button';
 import {
-  audiences,
-  clientBenefits,
-  contactChecklist,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@site/src/components/ui/card';
+import {
+  capabilitySummary,
   contactEmail,
-  contactExpectations,
-  engagementModels,
+  contactSection,
   hero,
-  overview,
   partners,
-  principles,
-  services,
+  partnerSection,
+  products,
+  productsIntro,
   siteDescription,
   siteTitle,
-  stats,
-  vision,
-  work,
 } from '@site/src/data/siteContent';
 
-const contactScenarios = [
-  '想先討論目前的網站、資料流程或研究專案，確認適合從哪一段開始整理。',
-  '需要建立正式對外網站、成果站或資料入口，但還不確定資訊架構與頁面範圍。',
-  '已經有資料與內容基礎，想規劃後續的平台功能、維運方式與移交流程。',
-];
-
-function SectionLabel({children}) {
+function SectionIntro({
+  eyebrow,
+  title,
+  titleLines,
+  description,
+  headClassName = '',
+  titleClassName = '',
+  descriptionClassName = '',
+}) {
   return (
-    <div className="onepage-marker">
-      <span>{children}</span>
-    </div>
-  );
-}
-
-function NumberedRows({items, renderTitle, renderBody}) {
-  return (
-    <div className="onepage-feature-list">
-      {items.map((item, index) => (
-        <div key={renderTitle(item)} className="onepage-feature-row">
-          <div className="onepage-feature-index">{String(index + 1).padStart(2, '0')}</div>
-          <div className="space-y-3">
-            <h3 className="onepage-feature-title">{renderTitle(item)}</h3>
-            <div className="onepage-feature-copy">{renderBody(item)}</div>
-          </div>
-        </div>
-      ))}
+    <div className={`brand-section-head ${headClassName}`.trim()}>
+      <span className="brand-eyebrow">{eyebrow}</span>
+      <h2 className={`brand-title ${titleClassName}`.trim()}>
+        {(titleLines || [title]).map((line) => (
+          <span key={line} className="section-title-line">
+            {line}
+          </span>
+        ))}
+      </h2>
+      {description ? <p className={`brand-copy ${descriptionClassName}`.trim()}>{description}</p> : null}
     </div>
   );
 }
 
 export default function Home() {
+  const mobileHeroTitleLines = ['把生態監測資料，', '變成可管理、', '可應用的工作系統。'];
+  const desktopHeroTitleLines = hero.titleLines || [hero.title];
+
   return (
     <Layout title={siteTitle} description={siteDescription}>
       <main className="bg-background">
@@ -71,16 +69,24 @@ export default function Home() {
                 <div className="max-w-5xl space-y-8">
                   <div className="flex flex-wrap items-center gap-3">
                     <span className="hero-pill">{hero.badge}</span>
-                    <p className="text-xs font-semibold uppercase tracking-[0.26em] text-black/60">
-                      Data platforms, project websites, open access
-                    </p>
                   </div>
 
                   <div className="space-y-5">
-                    <h1 className="max-w-5xl whitespace-pre-line text-balance text-5xl font-black leading-[0.9] tracking-[-0.05em] text-black sm:text-6xl md:text-7xl xl:text-[5.35rem]">
-                      {hero.title}
+                    <h1 className="max-w-6xl text-5xl font-black leading-[0.9] tracking-[-0.05em] text-black sm:text-6xl md:hidden">
+                      {mobileHeroTitleLines.map((line) => (
+                        <span key={line} className="block">
+                          {line}
+                        </span>
+                      ))}
                     </h1>
-                    <p className="max-w-xl text-sm leading-6 text-black/70 md:text-base">
+                    <h1 className="hidden max-w-6xl font-black leading-[0.9] tracking-[-0.05em] text-black md:block md:text-7xl lg:whitespace-nowrap xl:text-[5.1rem]">
+                      {desktopHeroTitleLines.map((line) => (
+                        <span key={line} className="hero-title-line">
+                          {line}
+                        </span>
+                      ))}
+                    </h1>
+                    <p className="max-w-5xl text-sm leading-8 text-black/72 md:text-base md:leading-7 lg:whitespace-nowrap lg:text-[1.05rem]">
                       {hero.description}
                     </p>
                   </div>
@@ -106,255 +112,161 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="company-intro" className="onepage-section onepage-section--muted">
+        <section className="brand-section brand-section--partners">
           <div className="container">
-            <div className="onepage-shell">
-              <SectionLabel>公司介紹</SectionLabel>
+            <div className="partner-strip">
+              <div className="partner-strip__header">
+                <span className="brand-eyebrow">Partners</span>
+                <h2 className="partner-strip__title">{partnerSection.title}</h2>
+                <p className="partner-strip__copy">{partnerSection.description}</p>
+              </div>
 
-              <div className="onepage-content">
-                <div className="space-y-6">
-                  <span className="onepage-eyebrow">About Data Island</span>
-                  <h2 className="onepage-title">{overview.title}</h2>
-                  <p className="onepage-lead">{siteDescription}</p>
-                  <p className="onepage-body">{vision.description}</p>
-                </div>
-
-                <div className="onepage-stat-list">
-                  {stats.map((item) => (
-                    <div key={item.label} className="onepage-stat">
-                      <p className="onepage-stat-label">{item.label}</p>
-                      <p className="onepage-stat-value">{item.value}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="onepage-note-grid">
-                  <div className="onepage-note-block">
-                    <p className="onepage-subhead">我們在做什麼</p>
-                    <h3 className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
-                      {vision.title}
-                    </h3>
-                    <div className="mt-4 space-y-3 text-base leading-8 text-muted-foreground">
-                      <p>{overview.description}</p>
-                      {overview.highlights.map((item) => (
-                        <p key={item}>{item}</p>
-                      ))}
-                    </div>
+              <div className="partner-logo-grid">
+                {partners.map((partner) => (
+                  <div key={partner.name} className="partner-logo-card">
+                    <img
+                      src={partner.image}
+                      alt={partner.name}
+                      className="partner-logo-image"
+                      loading="lazy"
+                    />
                   </div>
-
-                  <div className="onepage-note-block">
-                    <p className="onepage-subhead">合作對象</p>
-                    <div className="space-y-4">
-                      {audiences.map((audience) => (
-                        <div key={audience.title} className="border-t border-border/70 pt-4 first:border-t-0 first:pt-0">
-                          <h3 className="text-xl font-semibold text-foreground">{audience.title}</h3>
-                          <p className="mt-2 text-base leading-8 text-muted-foreground">
-                            {audience.description}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <p className="onepage-subhead">我們重視的原則</p>
-                  <NumberedRows
-                    items={principles}
-                    renderTitle={(item) => item.title}
-                    renderBody={(item) => item.description}
-                  />
-                </div>
-
-                <div className="onepage-partner-strip">
-                  <p className="onepage-subhead">合作單位</p>
-                  <div className="onepage-logo-strip">
-                    {partners.map((partner) => (
-                      <div key={partner.name} className="onepage-logo-item">
-                        <img
-                          src={partner.image}
-                          alt={partner.name}
-                          className="h-14 w-auto object-contain grayscale"
-                        />
-                        <span>{partner.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        <section id="products-services" className="onepage-section">
+        <section id="company-intro" className="brand-section brand-section--muted">
           <div className="container">
-            <div className="onepage-shell">
-              <SectionLabel>產品與服務</SectionLabel>
-
-              <div className="onepage-content">
-                <div className="space-y-6">
-                  <span className="onepage-eyebrow">Products & Services</span>
-                  <h2 className="onepage-title">
-                    從資料平台、成果網站到開放資料入口，內容按照需求一段一段往下展開。
-                  </h2>
-                  <p className="onepage-lead">
-                    我們不是把服務切成很多張卡片，而是依照實際工作流程去規劃資料、內容、角色權限與對外溝通方式。
-                  </p>
-                </div>
-
-                <div>
-                  <p className="onepage-subhead">核心服務</p>
-                  <NumberedRows
-                    items={services}
-                    renderTitle={(item) => item.title}
-                    renderBody={(item) => item.description}
-                  />
-                </div>
-
-                <div>
-                  <p className="onepage-subhead">可交付的產品類型</p>
-                  <NumberedRows
-                    items={work}
-                    renderTitle={(item) => item.title}
-                    renderBody={(item) => (
-                      <div className="space-y-4">
-                        <p>{item.summary}</p>
-                        <div className="flex flex-wrap gap-2">
-                          {item.tags.map((tag) => (
-                            <span key={tag} className="onepage-chip">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                        <div className="space-y-2 border-t border-border/70 pt-4">
-                          {item.deliverables.map((deliverable) => (
-                            <p key={deliverable} className="text-sm leading-7 text-muted-foreground">
-                              {deliverable}
-                            </p>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  />
-                </div>
-
-                <div className="onepage-note-grid">
-                  {engagementModels.map((model) => (
-                    <div key={model.title} className="onepage-note-block">
-                      <p className="onepage-subhead">合作方式</p>
-                      <h3 className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
-                        {model.title}
-                      </h3>
-                      <p className="mt-4 text-base leading-8 text-muted-foreground">
-                        {model.description}
-                      </p>
-                      <div className="mt-5 space-y-3 border-t border-border/70 pt-5">
-                        {model.points.map((point) => (
-                          <p key={point} className="text-sm leading-7 text-muted-foreground">
-                            {point}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div>
-                  <p className="onepage-subhead">合作後你會得到什麼</p>
-                  <div className="onepage-feature-list">
-                    {clientBenefits.map((item, index) => (
-                      <div key={item} className="onepage-feature-row">
-                        <div className="onepage-feature-index">
-                          {String(index + 1).padStart(2, '0')}
-                        </div>
-                        <p className="onepage-feature-copy">{item}</p>
-                      </div>
+            <div className="capability-showcase">
+              <div className="capability-showcase__hero">
+                <div className="capability-summary-block">
+                  <span className="brand-eyebrow">About</span>
+                  <h2 className="capability-summary-title">
+                    {(capabilitySummary.titleLines || [capabilitySummary.title]).map((line) => (
+                      <span key={line} className="capability-summary-title__line">
+                        {line}
+                      </span>
                     ))}
-                  </div>
+                  </h2>
+                  <p className="capability-summary-intro">{capabilitySummary.intro}</p>
+                  <p className="capability-summary-copy">{capabilitySummary.description}</p>
                 </div>
+              </div>
+
+              <div className="capability-feature-grid">
+                {capabilitySummary.features.map((feature, index) => (
+                  <Card key={feature.title} className="capability-feature-card">
+                    <CardContent className="p-6 md:p-7">
+                      <div className="capability-feature-card__index">
+                        {String(index + 1).padStart(2, '0')}
+                      </div>
+                      <h3 className="capability-feature-card__title">{feature.title}</h3>
+                      <p className="capability-feature-card__copy">{feature.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        <section id="contact-us" className="onepage-section onepage-section--accent">
+        <section id="products-services" className="brand-section brand-section--intro">
           <div className="container">
-            <div className="onepage-shell">
-              <SectionLabel>聯絡我們</SectionLabel>
+            <SectionIntro
+              eyebrow="Products Intro"
+              title={productsIntro.title}
+              headClassName="lg:max-w-none"
+              titleClassName="lg:max-w-none lg:whitespace-nowrap"
+              descriptionClassName="lg:max-w-none lg:whitespace-nowrap"
+              description={productsIntro.description}
+            />
+          </div>
+        </section>
 
-              <div className="onepage-content">
+        <section className="brand-section brand-section--products">
+          <div className="container">
+            <div className="product-card-grid">
+              {products.map((product) => (
+                <Link
+                  key={product.name}
+                  to={`/products/${product.slug}`}
+                  className="product-card-link"
+                  aria-label={`查看 ${product.name} 產品說明`}>
+                  <Card className="product-card">
+                    <CardHeader className="space-y-4 p-7 md:p-8">
+                      <div className="space-y-2">
+                        <span className="product-card__kicker">{product.kicker}</span>
+                        <CardTitle className="product-card__name">{product.name}</CardTitle>
+                        <CardDescription className="product-card__type">
+                          {product.title}
+                        </CardDescription>
+                        {product.cardMeta ? (
+                          <div className="product-card__meta">
+                            {product.cardMeta.map((meta) => (
+                              <p key={meta}>{meta}</p>
+                            ))}
+                          </div>
+                        ) : null}
+                      </div>
+                      <p className="product-card__summary">{product.summary}</p>
+                    </CardHeader>
+                    <CardContent className="p-7 pt-0 md:px-8 md:pb-8">
+                      <div className="product-card__footer">
+                        <div className="product-card__cta-panel">
+                          <div className="product-card__cta">
+                            {product.ctaLabel || '查看產品說明'}
+                            <ArrowRight className="h-4 w-4" />
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="contact-us" className="brand-section">
+          <div className="container">
+            <div className="page-cta-card">
+              <div className="contact-cta-layout">
                 <div className="space-y-6">
-                  <span className="onepage-eyebrow">Contact</span>
-                  <h2 className="onepage-title">
-                    如果你已經有資料、研究成果或專案需求，現在就可以開始第一輪整理。
-                  </h2>
-                  <p className="onepage-lead">
-                    先把你們目前的資料狀態、網站現況與合作目標說清楚，我們就能一起判斷適合從官網、資料入口，或平台規劃開始。
-                  </p>
-                </div>
-
-                <div className="onepage-contact-grid">
-                  <div className="onepage-note-block">
-                    <p className="onepage-subhead">聯絡方式</p>
-                    <a className="onepage-email-link" href={`mailto:${contactEmail}`}>
-                      {contactEmail}
+                  <SectionIntro
+                    eyebrow="Contact"
+                    title={contactSection.title}
+                    titleLines={contactSection.titleLines}
+                    description={contactSection.description}
+                  />
+                  <Button asChild size="lg" className="hero-entry-button w-fit gap-2">
+                    <a href={`mailto:${contactEmail}`}>
+                      預約需求討論
+                      <ArrowRight className="h-4 w-4" />
                     </a>
-                    <p className="mt-4 text-base leading-8 text-muted-foreground">
-                      你可以直接來信描述背景、目標、預計時程與既有資產，我們會先協助收斂出可以開始執行的範圍。
-                    </p>
-                    <div className="mt-6">
-                      <Button asChild size="lg" className="hero-entry-button gap-2">
-                        <a href={`mailto:${contactEmail}`}>
-                          立即來信
-                          <ArrowRight className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div className="onepage-note-block">
-                    <p className="onepage-subhead">來信時可以先提供</p>
-                    <div className="space-y-4">
-                      {contactChecklist.map((item, index) => (
-                        <div key={item} className="border-t border-border/70 pt-4 first:border-t-0 first:pt-0">
-                          <div className="onepage-feature-index">
-                            {String(index + 1).padStart(2, '0')}
-                          </div>
-                          <p className="mt-2 text-base leading-8 text-foreground">{item}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  </Button>
                 </div>
 
-                <div className="onepage-note-grid">
-                  <div className="onepage-note-block">
-                    <p className="onepage-subhead">合作預期</p>
-                    <div className="space-y-4">
-                      {contactExpectations.map((item, index) => (
-                        <div key={item} className="border-t border-border/70 pt-4 first:border-t-0 first:pt-0">
-                          <div className="onepage-feature-index">
-                            {String(index + 1).padStart(2, '0')}
-                          </div>
-                          <p className="mt-2 text-base leading-8 text-muted-foreground">{item}</p>
-                        </div>
-                      ))}
+                <div className="contact-checklist">
+                  {contactSection.checklist.map((item, index) => (
+                    <div key={item} className="contact-checklist__item">
+                      <div className="onepage-feature-index">
+                        {String(index + 1).padStart(2, '0')}
+                      </div>
+                      <div className="contact-checklist__copy">
+                        {item.split('\n').map((line, lineIndex) =>
+                          lineIndex === 0 ? (
+                            <h3 key={line} className="contact-checklist__title">
+                              {line}
+                            </h3>
+                          ) : (
+                            <p key={line}>{line}</p>
+                          ),
+                        )}
+                      </div>
                     </div>
-                  </div>
-
-                  <div className="onepage-note-block">
-                    <p className="onepage-subhead">適合先聊聊的情況</p>
-                    <div className="space-y-4">
-                      {contactScenarios.map((item, index) => (
-                        <div key={item} className="border-t border-border/70 pt-4 first:border-t-0 first:pt-0">
-                          <div className="onepage-feature-index">
-                            {String(index + 1).padStart(2, '0')}
-                          </div>
-                          <p className="mt-2 text-base leading-8 text-muted-foreground">{item}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
