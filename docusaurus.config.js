@@ -1,14 +1,14 @@
 // @ts-check
 
 import {themes as prismThemes} from 'prism-react-renderer';
-import {brandName, contactEmail, footerDescription, siteDescription} from './src/data/siteContent.js';
+import {brandName, contactEmail, siteDescription} from './src/data/siteContent.js';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: brandName,
   tagline: '生態監測資料平台與專案網站',
-  favicon: 'img/favicon.ico',
-  url: 'https://dataislans.tw',
+  favicon: 'img/dataisland-logo.png',
+  url: 'https://www.dataisland.tw',
   baseUrl: '/',
   future: {
     v4: true,
@@ -37,7 +37,7 @@ const config = {
   ],
   themeConfig:
     ({
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/dataisland-social-card.png',
       colorMode: {
         defaultMode: 'light',
         disableSwitch: true,
@@ -47,7 +47,7 @@ const config = {
         title: brandName,
         logo: {
           alt: brandName,
-          src: 'img/docusaurus.png',
+          src: 'img/dataisland-logo.png',
         },
         items: [
           {href: '/#company-intro', label: '公司介紹', position: 'left'},
@@ -71,7 +71,7 @@ const config = {
             items: [{label: contactEmail, href: `mailto:${contactEmail}`}],
           },
         ],
-        copyright: `© ${new Date().getFullYear()} ${brandName}. ${footerDescription}`,
+        copyright: `© ${new Date().getFullYear()} ${brandName}.`,
       },
       prism: {
         theme: prismThemes.github,

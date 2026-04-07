@@ -1,5 +1,6 @@
-import React from 'react';
+﻿import React from 'react';
 import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 import {ArrowRight} from 'lucide-react';
 import {Button} from '@site/src/components/ui/button';
@@ -20,7 +21,6 @@ import {
   products,
   productsIntro,
   siteDescription,
-  siteTitle,
 } from '@site/src/data/siteContent';
 
 function SectionIntro({
@@ -48,15 +48,45 @@ function SectionIntro({
 }
 
 export default function Home() {
-  const mobileHeroTitleLines = ['把生態監測資料，', '變成可管理、', '可應用的工作系統。'];
+  const mobileHeroTitleLines = hero.titleLines || [hero.title];
   const desktopHeroTitleLines = hero.titleLines || [hero.title];
+  const heroPhotoSrc = useBaseUrl('/img/camera/leopard-cat-hero.png');
+  const fieldPhotos = [
+    {
+      name: '黑冠麻鷺',
+      description: '白天活動紀錄',
+      src: useBaseUrl('/img/camera/malayan-night-heron.jpg'),
+      alt: '自動相機拍攝到的黑冠麻鷺在林下活動',
+    },
+    {
+      name: '小彎嘴',
+      description: '林下環境片段',
+      src: useBaseUrl('/img/camera/small-babbler.jpg'),
+      alt: '自動相機拍攝到的小彎嘴出現在林下環境中',
+    },
+    {
+      name: '竹雞',
+      description: '地面活動紀錄',
+      src: useBaseUrl('/img/camera/bamboo-partridge.jpg'),
+      alt: '自動相機拍攝到的竹雞在地面活動',
+    },
+    {
+      name: '白鼻心',
+      description: '夜間活動紀錄',
+      src: useBaseUrl('/img/camera/masked-palm-civet.jpg'),
+      alt: '自動相機拍攝到的白鼻心在夜間穿越鏡頭',
+    },
+  ];
 
   return (
-    <Layout title={siteTitle} description={siteDescription}>
+    <Layout title="數嶼科技 | 生態監測資料工作流程" description={siteDescription}>
       <main className="bg-background">
         <section className="hero-section">
           <div className="w-full">
             <div className="hero-surface px-6 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14">
+              <div className="hero-photo-underlay" aria-hidden="true">
+                <img src={heroPhotoSrc} alt="" className="hero-photo-underlay__image" />
+              </div>
               <span className="hero-polygon hero-polygon--one" aria-hidden="true" />
               <span className="hero-polygon hero-polygon--two" aria-hidden="true" />
               <span className="hero-polygon hero-polygon--three" aria-hidden="true" />
@@ -65,8 +95,8 @@ export default function Home() {
                 Scroll
               </span>
 
-              <div className="relative z-10 mx-auto flex min-h-[calc(100vh-8rem)] max-w-7xl items-center">
-                <div className="max-w-5xl space-y-8">
+              <div className="hero-layout relative z-10 mx-auto flex min-h-[calc(100vh-8rem)] max-w-7xl items-center">
+                <div className="hero-copy-stack max-w-5xl space-y-8">
                   <div className="flex flex-wrap items-center gap-3">
                     <span className="hero-pill">{hero.badge}</span>
                   </div>
@@ -86,7 +116,7 @@ export default function Home() {
                         </span>
                       ))}
                     </h1>
-                    <p className="max-w-5xl text-sm leading-8 text-black/72 md:text-base md:leading-7 lg:whitespace-nowrap lg:text-[1.05rem]">
+                    <p className="hero-description max-w-5xl text-sm leading-8 md:text-base md:leading-7 lg:whitespace-nowrap lg:text-[1.05rem]">
                       {hero.description}
                     </p>
                   </div>
@@ -118,7 +148,9 @@ export default function Home() {
               <div className="partner-strip__header">
                 <span className="brand-eyebrow">Partners</span>
                 <h2 className="partner-strip__title">{partnerSection.title}</h2>
-                <p className="partner-strip__copy">{partnerSection.description}</p>
+                {partnerSection.description ? (
+                  <p className="partner-strip__copy">{partnerSection.description}</p>
+                ) : null}
               </div>
 
               <div className="partner-logo-grid">
@@ -132,6 +164,30 @@ export default function Home() {
                     />
                   </div>
                 ))}
+              </div>
+
+              <div className="field-record-strip">
+                <div className="field-record-strip__header">
+                  <span className="brand-eyebrow">Camera Records</span>
+                  <h3 className="field-record-strip__title">來自監測現場的影像紀錄</h3>
+                </div>
+
+                <div className="field-record-grid">
+                  {fieldPhotos.map((photo) => (
+                    <figure key={photo.name} className="field-record-card">
+                      <img
+                        src={photo.src}
+                        alt={photo.alt}
+                        className="field-record-card__image"
+                        loading="lazy"
+                      />
+                      <figcaption className="field-record-card__caption">
+                        <strong>{photo.name}</strong>
+                        <span>{photo.description}</span>
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -276,3 +332,4 @@ export default function Home() {
     </Layout>
   );
 }
+
