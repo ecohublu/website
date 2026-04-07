@@ -21,8 +21,7 @@ export const hero = {
 };
 export const partnerSection = {
   title: '曾合作的研究、保育與公共計畫夥伴',
-  description:
-    '我們與不同類型的研究單位、保育組織與公共計畫合作，協助建立更清楚、可持續的生態監測資料流程。',
+  description: null,
 };
 
 export const aboutBrand = {
