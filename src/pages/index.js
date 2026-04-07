@@ -50,7 +50,7 @@ function SectionIntro({
 export default function Home() {
   const mobileHeroTitleLines = hero.titleLines || [hero.title];
   const desktopHeroTitleLines = hero.titleLines || [hero.title];
-  const heroPhotoSrc = useBaseUrl('/img/camera/leopard-cat.jpg');
+  const heroPhotoSrc = useBaseUrl('/img/camera/leopard-cat-hero.png');
   const fieldPhotos = [
     {
       name: '黑冠麻鷺',
@@ -116,7 +116,7 @@ export default function Home() {
                         </span>
                       ))}
                     </h1>
-                    <p className="max-w-5xl text-sm leading-8 text-white/88 md:text-base md:leading-7 lg:whitespace-nowrap lg:text-[1.05rem]">
+                    <p className="hero-description max-w-5xl text-sm leading-8 md:text-base md:leading-7 lg:whitespace-nowrap lg:text-[1.05rem]">
                       {hero.description}
                     </p>
                   </div>
