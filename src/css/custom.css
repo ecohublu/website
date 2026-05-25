@@ -1601,6 +1601,34 @@
   }
 }
 
+/* CJK-aware line breaks for headings: keep Chinese words intact, wrap at punctuation */
+.hero-section h1,
+.brand-title,
+.partner-strip__title,
+.field-record-strip__title,
+.field-record-card__caption strong,
+.capability-summary-title,
+.capability-feature-card__title,
+.capability-item__value,
+.product-card__name,
+.product-card__type,
+.contact-checklist__title,
+.onepage-title,
+.onepage-title--compact,
+.onepage-feature-title,
+.onepage-stat-value,
+.editorial-nameplate__title,
+.editorial-lead-story__headline,
+.editorial-article__headline,
+.editorial-brief__title,
+.editorial-article__title,
+.editorial-contact-lead__headline,
+.editorial-section-title-wrap h2,
+.editorial-factbox__item strong {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
 @keyframes heroPolygonFloat {
   0% {
     transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
