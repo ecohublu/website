@@ -1603,6 +1603,7 @@
 
 /* CJK-aware line breaks for headings: keep Chinese words intact, wrap at punctuation */
 .hero-section h1,
+.inner-page-hero h1,
 .brand-title,
 .partner-strip__title,
 .field-record-strip__title,
@@ -1626,7 +1627,7 @@
 .editorial-section-title-wrap h2,
 .editorial-factbox__item strong {
   word-break: keep-all;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 @keyframes heroPolygonFloat {
@@ -1996,13 +1997,6 @@
   /* Mobile typography scale-down */
   .navbar__title {
     font-size: 1.05rem;
-  }
-
-  .hero-section h1 {
-    font-size: clamp(1.55rem, 7vw, 2.1rem) !important;
-    line-height: 1.08 !important;
-    letter-spacing: -0.03em !important;
-    overflow-wrap: anywhere;
   }
 
   .hero-description {
