@@ -48,8 +48,6 @@ function SectionIntro({
 }
 
 export default function Home() {
-  const mobileHeroTitleLines = hero.titleLines || [hero.title];
-  const desktopHeroTitleLines = hero.titleLines || [hero.title];
   const heroPhotoSrc = useBaseUrl('/img/camera/leopard-cat-hero.png');
   const fieldPhotos = [
     {
@@ -102,16 +100,9 @@ export default function Home() {
                   </div>
 
                   <div className="space-y-5">
-                    <h1 className="max-w-6xl text-5xl font-black leading-[0.9] tracking-[-0.05em] text-black sm:text-6xl md:hidden">
-                      {mobileHeroTitleLines.map((line) => (
+                    <h1 className="max-w-6xl text-4xl font-black leading-[1.08] tracking-[-0.05em] text-black md:text-5xl lg:text-6xl">
+                      {(hero.titleLines || [hero.title]).map((line) => (
                         <span key={line} className="block">
-                          {line}
-                        </span>
-                      ))}
-                    </h1>
-                    <h1 className="hidden max-w-6xl font-black leading-[0.9] tracking-[-0.05em] text-black md:block md:text-7xl lg:whitespace-nowrap xl:text-[5.1rem]">
-                      {desktopHeroTitleLines.map((line) => (
-                        <span key={line} className="hero-title-line">
                           {line}
                         </span>
                       ))}
