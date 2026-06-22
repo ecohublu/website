@@ -4,6 +4,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 import {ArrowRight} from 'lucide-react';
 import {Button} from '@site/src/components/ui/button';
+import BookingButton from '@site/src/components/booking-button';
 import {
   Card,
   CardContent,
@@ -113,12 +114,10 @@ export default function Home() {
                   </div>
 
                   <div className="flex flex-wrap gap-3">
-                    <Button asChild size="lg" className="hero-entry-button gap-2">
-                      <Link to="/#contact-us">
-                        {hero.primaryCta}
-                        <ArrowRight className="h-4 w-4" />
-                      </Link>
-                    </Button>
+                    <BookingButton size="lg" className="hero-entry-button gap-2">
+                      {hero.primaryCta}
+                      <ArrowRight className="h-4 w-4" />
+                    </BookingButton>
                     <Button
                       asChild
                       size="lg"
@@ -287,12 +286,10 @@ export default function Home() {
                     titleLines={contactSection.titleLines}
                     description={contactSection.description}
                   />
-                  <Button asChild size="lg" className="hero-entry-button w-fit gap-2">
-                    <a href={`mailto:${contactEmail}`}>
-                      預約需求討論
-                      <ArrowRight className="h-4 w-4" />
-                    </a>
-                  </Button>
+                  <BookingButton size="lg" className="hero-entry-button w-fit gap-2">
+                    預約需求討論
+                    <ArrowRight className="h-4 w-4" />
+                  </BookingButton>
                 </div>
 
                 <div className="contact-checklist">
