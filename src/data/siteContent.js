@@ -10,6 +10,19 @@ export const footerDescription =
 
 export const contactEmail = 'ecohub.lu@gmail.com';
 
+// Google Calendar 預約時間表的嵌入網址 (iframe src，結尾通常帶 ?gv=true)。
+// 申請方式：calendar.google.com →「建立」→「預約時間表」→「分享」→ 複製嵌入程式碼裡的 src。
+// 取得後把下面的 placeholder 換成真實網址即可，全站預約區塊會一起生效。
+export const bookingUrl =
+  'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2PfZzy_kKsMB5VqwpFXbr42HKOxR-_J_uS1WmfUwzt47EppHHVT0QBEC1do7gCfE6TlqrO_377?gv=true';
+
+export const bookingSection = {
+  eyebrow: 'Booking',
+  title: '預約一次需求討論',
+  description:
+    '選一個方便的時段，數嶼窗口會在預約後與你確認，並一起定義第一階段的合作範圍。',
+};
+
 export const hero = {
   badge: 'Ecology Data Platforms for Research, Conservation, and Public Projects',
   title: '把生態監測資料，串成可運作的工作流程',

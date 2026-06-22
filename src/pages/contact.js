@@ -3,6 +3,7 @@ import Layout from '@theme/Layout';
 import {Mail, Send} from 'lucide-react';
 import {Badge} from '@site/src/components/ui/badge';
 import {Button} from '@site/src/components/ui/button';
+import BookingButton from '@site/src/components/booking-button';
 import {
   Card,
   CardContent,
@@ -44,12 +45,10 @@ export default function Contact() {
                     如果你正在規劃官方網站、資料平台、成果站或開放資料入口，可以先把目前狀況整理給我們，我們會先協助判斷最適合的合作起點。
                   </p>
                 </div>
-                <Button asChild size="lg" className="w-fit gap-2">
-                  <a href={`mailto:${contactEmail}`}>
-                    <Send className="h-4 w-4" />
-                    {contactEmail}
-                  </a>
-                </Button>
+                <BookingButton size="lg" className="w-fit gap-2">
+                  <Send className="h-4 w-4" />
+                  預約需求討論
+                </BookingButton>
               </div>
 
               <Card className="page-metric-card rounded-[1.6rem] shadow-none">

@@ -4,8 +4,9 @@ import Layout from '@theme/Layout';
 import {ArrowRight} from 'lucide-react';
 import {Badge} from '@site/src/components/ui/badge';
 import {Button} from '@site/src/components/ui/button';
+import BookingButton from '@site/src/components/booking-button';
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@site/src/components/ui/card';
-import {brandName, contactEmail, siteDescription} from '@site/src/data/siteContent';
+import {brandName, siteDescription} from '@site/src/data/siteContent';
 
 export default function ProductDetailPage({product}) {
   const page = product.page || {};
@@ -63,12 +64,10 @@ export default function ProductDetailPage({product}) {
               </div>
 
               <div className="flex flex-wrap gap-3">
-                <Button asChild size="lg" className="w-fit gap-2 whitespace-nowrap">
-                  <a href={`mailto:${contactEmail}`}>
-                    {primaryCtaLabel}
-                    <ArrowRight className="h-4 w-4" />
-                  </a>
-                </Button>
+                <BookingButton size="lg" className="w-fit gap-2 whitespace-nowrap">
+                  {primaryCtaLabel}
+                  <ArrowRight className="h-4 w-4" />
+                </BookingButton>
                 <Button asChild size="lg" variant="outline" className="w-fit whitespace-nowrap">
                   <Link to="/#products-services">{secondaryCtaLabel}</Link>
                 </Button>
@@ -162,12 +161,10 @@ export default function ProductDetailPage({product}) {
                   {contactDescription}
                 </p>
               </div>
-              <Button asChild size="lg" className="w-fit gap-2 whitespace-nowrap">
-                <a href={`mailto:${contactEmail}`}>
-                  {contactCtaLabel}
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </Button>
+              <BookingButton size="lg" className="w-fit gap-2 whitespace-nowrap">
+                {contactCtaLabel}
+                <ArrowRight className="h-4 w-4" />
+              </BookingButton>
             </CardContent>
           </Card>
         </section>

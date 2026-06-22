@@ -1195,3 +1195,115 @@
   }
 
 }
+
+.booking-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(9, 18, 8, 0.55);
+  backdrop-filter: blur(2px);
+  animation: booking-modal-fade 0.18s ease-out;
+}
+
+@keyframes booking-modal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.booking-modal__panel {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  height: min(85vh, 820px);
+  border-radius: 1.4rem;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(9, 18, 8, 0.35);
+}
+
+.booking-modal__close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #091208;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 2px 10px rgba(9, 18, 8, 0.18);
+  transition: background 0.15s ease;
+}
+
+.booking-modal__close:hover {
+  background: hsl(86 76% 84%);
+}
+
+.booking-modal__iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.booking-modal__loading {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  background: #fff;
+  font-size: 0.9rem;
+  color: rgba(18, 36, 13, 0.6);
+}
+
+.booking-modal__spinner {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  border: 3px solid hsl(86 76% 84%);
+  border-top-color: #dc4219;
+  animation: booking-spin 0.8s linear infinite;
+}
+
+@keyframes booking-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.booking-modal__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  height: 100%;
+  padding: 2rem;
+  text-align: center;
+  color: rgba(18, 36, 13, 0.7);
+}
+
+.booking-modal__fallback-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 500;
+  color: #dc4219;
+}
